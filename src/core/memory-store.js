@@ -35,15 +35,20 @@ getAll() {
   }
 
 add(item) {
-  const memories = this.load();
 
-  memories.push({
- id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
-    type: item.type || "general",
-    importance: item.importance || 5,
-    ...item
-  });
+  const memories = this.load();
+memories.push({
+  id: crypto.randomUUID(),
+  type: item.type || "general",
+  category: item.category || null,
+  value: item.value || null,
+  content: item.content || "",
+  importance: item.importance || 5,
+  count: item.count || 1,
+  createdAt: new Date().toISOString(),
+  lastSeen: item.lastSeen || new Date().toISOString(),
+  ...item
+});
 
   this.save(memories);
 }
