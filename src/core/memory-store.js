@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 class MemoryStore {
   constructor(root = "./workspace") {
@@ -37,7 +38,7 @@ add(item) {
   const memories = this.load();
 
   memories.push({
-    id: Date.now(),
+ id: crypto.randomUUID(),
     createdAt: new Date().toISOString(),
     type: item.type || "general",
     importance: item.importance || 5,
